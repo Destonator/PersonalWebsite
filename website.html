@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Deston Cauthers | Robotics and Electrical &amp; Computer Engineering</title>
+<meta name="description" content="Portfolio of Deston Cauthers, a Robotics Engineering and Electrical &amp; Computer Engineering double major at Worcester Polytechnic Institute.">
+<meta name="theme-color" content="#050B1A">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Newsreader:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* Palette (intentionally dark in every viewer theme):
+   Abyss #050B1A page, Midnight #0A1630 panels, Steel #183056 lines,
+   Cobalt #3D7BFF accent, Sky #8CC0FF links, Cyan #5EE0F5 signal, Ice #E4EDFF headings, Mist #93A7CC secondary */
+:root{
+  color-scheme:dark;
+  --bg:#050B1A; --panel:#0A1630; --line:#183056;
+  --cobalt:#3D7BFF; --sky:#8CC0FF; --cyan:#5EE0F5;
+  --ink:#E4EDFF; --text:#C4D3F0; --mist:#93A7CC;
+  --f-d:"Bricolage Grotesque","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-b:"Newsreader",Georgia,"Times New Roman",serif;
+  --rail-x:max(14px, calc((100% - 1080px) / 2 + 14px));
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{background:var(--bg);scroll-padding-top:calc(env(safe-area-inset-top,0px) + 4.5rem)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-b);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg,canvas{max-width:100%}
+a{color:var(--sky)}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:1rem;top:-4rem;background:var(--cobalt);color:#03102B;padding:.5rem .9rem;font-family:var(--f-d);font-weight:600;z-index:100;text-decoration:none}
+.skip:focus{top:calc(env(safe-area-inset-top,0px) + .5rem)}
+
+/* Header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem clamp(1rem,4vw,2.5rem);border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+.top.solid{background:rgba(5,11,26,.82);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-color:var(--line)}
+.brand{font:800 1.1rem var(--f-d);letter-spacing:-.02em;color:var(--ink);text-decoration:none;border:1.5px solid var(--cobalt);padding:.12rem .5rem;border-radius:3px;flex:none}
+.top nav{display:flex;gap:clamp(.8rem,2.4vw,1.7rem);overflow-x:auto;scrollbar-width:none}
+.top nav::-webkit-scrollbar{display:none}
+.top nav a{font-family:var(--f-d);font-size:.92rem;color:var(--mist);text-decoration:none;padding:.3rem 0;border-bottom:2px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s}
+.top nav a:hover,.top nav a.on{color:var(--ink);border-color:var(--cobalt)}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:clamp(1.8rem,4vw,4rem);align-items:center;max-width:1240px;margin:0 auto;padding:clamp(1.5rem,4vw,3rem) clamp(1rem,4vw,2.5rem) clamp(3rem,7vw,6rem);min-height:calc(100svh - 4.5rem)}
+.name{font-family:var(--f-d);font-weight:800;font-size:clamp(3rem,8.4vw,6.4rem);line-height:.94;letter-spacing:-.035em;margin:0 0 1.5rem;color:var(--ink)}
+.ln{display:block;overflow:hidden;padding-bottom:.1em}
+.ln>span{display:block;transform:translateY(108%);animation:rise 1s cubic-bezier(.2,.8,.2,1) forwards}
+.ln:nth-child(2)>span{animation-delay:.14s}
+@keyframes rise{to{transform:none}}
+@keyframes fadein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.lede{font-size:clamp(1.15rem,2vw,1.4rem);line-height:1.5;max-width:31rem;margin:0 0 2rem;animation:fadein .9s .55s both}
+.cta{display:flex;flex-wrap:wrap;gap:.8rem;animation:fadein .9s .7s both}
+.btn{display:inline-flex;align-items:center;font-family:var(--f-d);font-weight:600;font-size:1rem;padding:.8rem 1.3rem;border-radius:4px;text-decoration:none;border:1.5px solid var(--cobalt);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn.pri{background:var(--cobalt);color:#03102B}
+.btn.pri:hover{background:var(--sky);border-color:var(--sky)}
+.btn.sec{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.sec:hover{border-color:var(--sky);color:var(--sky)}
+.hero-copy{will-change:transform,opacity}
+
+/* Instrument frames (hero map and project figures) */
+.grid{background-image:linear-gradient(rgba(140,192,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(140,192,255,.07) 1px,transparent 1px)}
+.brk{position:relative}
+.brk::after{content:"";position:absolute;inset:-1px;pointer-events:none;
+  background:
+   linear-gradient(var(--cyan),var(--cyan)) left top/16px 2px,
+   linear-gradient(var(--cyan),var(--cyan)) left top/2px 16px,
+   linear-gradient(var(--cyan),var(--cyan)) right top/16px 2px,
+   linear-gradient(var(--cyan),var(--cyan)) right top/2px 16px,
+   linear-gradient(var(--cyan),var(--cyan)) left bottom/16px 2px,
+   linear-gradient(var(--cyan),var(--cyan)) left bottom/2px 16px,
+   linear-gradient(var(--cyan),var(--cyan)) right bottom/16px 2px,
+   linear-gradient(var(--cyan),var(--cyan)) right bottom/2px 16px;
+  background-repeat:no-repeat}
+.scope{margin:0;animation:fadein 1.1s .25s both}
+.scope-frame{background-color:var(--panel);background-size:2.5% 4%;border:1px solid var(--line);overflow:hidden}
+#map{display:block;width:100%;height:auto;aspect-ratio:8/5;transition:opacity .7s ease}
+.hud{position:absolute;top:.7rem;display:flex;align-items:center;gap:.55rem;font:600 .82rem var(--f-d);color:var(--sky);background:rgba(5,11,26,.66);padding:.28rem .6rem;border-radius:3px;z-index:2}
+.hud-l{left:.8rem}.hud-r{right:.8rem}
+.hud b{font-weight:800;color:var(--ink);min-width:2.4ch;text-align:right}
+.bar{display:block;width:64px;height:3px;background:var(--line);overflow:hidden}
+.bar u{display:block;height:100%;background:var(--cyan);transform-origin:left;transform:scaleX(0);text-decoration:none}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--cyan);animation:pulse 1.6s ease-in-out infinite}
+.pulse.done{animation:none;background:var(--cobalt)}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(94,224,245,.0);opacity:.45}0%,100%{box-shadow:0 0 0 0 rgba(94,224,245,.5)}}
+.scope figcaption{display:flex;flex-wrap:wrap;gap:.3rem 1rem;justify-content:space-between;align-items:baseline;margin-top:.8rem;font-size:.95rem;color:var(--mist);line-height:1.45}
+.linkbtn{background:none;border:0;padding:0;font:600 .92rem var(--f-d);color:var(--sky);cursor:pointer;border-bottom:1px solid var(--cobalt)}
+.linkbtn:hover{color:var(--cyan)}
+
+/* Scroll trace rail */
+.page{position:relative}
+.rail{position:absolute;top:0;bottom:0;left:var(--rail-x);width:2px;transform:translateX(-50%);background:var(--line);pointer-events:none}
+.rail-fill{position:absolute;inset:0;background:linear-gradient(var(--cobalt),var(--cyan));transform-origin:top;transform:scaleY(0);box-shadow:0 0 12px rgba(61,123,255,.7)}
+.sec{position:relative;--sec-pt:clamp(4rem,9vw,7rem);padding-block:var(--sec-pt) 1rem}
+.pad{position:absolute;left:var(--rail-x);top:calc(var(--sec-pt) + .9rem);width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--line);transform:translateX(-50%);z-index:1;transition:border-color .35s,background .35s,box-shadow .35s}
+.pad.on{border-color:var(--cyan);background:var(--cyan);box-shadow:0 0 0 5px rgba(94,224,245,.14),0 0 16px rgba(94,224,245,.65)}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:44px clamp(1rem,4vw,2rem)}
+h2{font-family:var(--f-d);font-weight:700;font-size:clamp(2rem,4.6vw,3.1rem);letter-spacing:-.025em;line-height:1.05;margin:0 0 2.4rem;color:var(--ink)}
+h3,h4{font-family:var(--f-d);color:var(--ink);margin:0}
+
+/* Reveal */
+.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* Background (experience and education) */
+.cols{display:grid;gap:3rem 4.5rem;grid-template-columns:minmax(0,1fr)}
+@media (min-width:960px){.cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cols>div>h3{font-size:1.05rem;font-weight:600;color:var(--sky);margin-bottom:.9rem}
+.entry{padding:1.4rem 0 1.5rem;border-top:1px solid var(--line)}
+.when{font:400 .92rem var(--f-d);color:var(--mist);margin:0 0 .35rem}
+.entry h4{font-size:1.25rem;font-weight:600;line-height:1.25}
+.org{color:var(--sky);margin:.15rem 0 .75rem}
+.entry ul{margin:0;padding-left:1.1rem}
+.entry li{margin:.35rem 0}
+
+/* Projects */
+.lead{max-width:34rem;margin:-1.2rem 0 3rem;color:var(--mist)}
+.projects{display:grid;gap:clamp(3.5rem,8vw,6rem)}
+.proj{display:grid;grid-template-columns:minmax(0,1fr);gap:1.6rem 3.2rem;align-items:center}
+@media (min-width:900px){
+  .proj{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+  .proj:nth-child(even) .fig{order:2}
+}
+.frame{background-color:var(--panel);background-size:20px 20px;border:1px solid var(--line);padding:clamp(.6rem,2vw,1.1rem);transform:translateY(var(--py,0px))}
+.ill{display:block;width:100%;height:auto;overflow:visible}
+.ill .l{fill:none;stroke:var(--sky);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ill .a{stroke:var(--cyan)}
+.ill .dash{stroke-dasharray:4 5}
+.ill .dot{fill:var(--cobalt);stroke:var(--sky);stroke-width:1.4}
+.ill .fillb{fill:rgba(61,123,255,.14)}
+.ill .bull{fill:var(--panel);stroke:var(--sky);stroke-width:1.6}
+.ill .ball{stroke:none}
+.ill .ghost{opacity:.45}
+.js .ill .draw{opacity:0;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.5s ease var(--d,0s),opacity .01s linear var(--d,0s)}
+.js .in .ill .draw{opacity:1;stroke-dashoffset:0}
+.js .ill .fade{opacity:0;transition:opacity .9s ease var(--d,0s)}
+.js .in .ill .fade{opacity:1}
+.js .in .ill .ghost.fade{opacity:.45}
+.txt h3{font-size:clamp(1.5rem,3vw,2.05rem);font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.ctx{font:400 .95rem var(--f-d);color:var(--mist);margin:.35rem 0 1rem}
+.txt p{margin:0 0 1rem}
+.txt p.ctx{margin:.35rem 0 1rem}
+.tags{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem .5rem;padding:0;margin:1.1rem 0 1.2rem}
+.tags li{font:400 .82rem var(--f-d);color:var(--sky);border:1px solid var(--line);padding:.18rem .6rem;border-radius:3px}
+.lnk{color:var(--sky);font-family:var(--f-d);font-weight:600;text-decoration:none;border-bottom:1px solid var(--cobalt);padding-bottom:1px;transition:color .2s,border-color .2s}
+.lnk:hover{color:var(--cyan);border-color:var(--cyan)}
+
+/* Skills */
+.skills{display:grid;gap:2.6rem 3rem;grid-template-columns:minmax(0,1fr)}
+@media (min-width:820px){.skills{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.skills h3{font-size:1.05rem;font-weight:600;color:var(--sky);margin-bottom:.7rem}
+.skills ul{list-style:none;margin:0;padding:0}
+.skills li{display:flex;align-items:center;gap:.7rem;padding:.55rem 0;border-top:1px solid var(--line);color:var(--ink)}
+.skills li::before{content:"";width:7px;height:7px;background:var(--line);transition:background .25s,box-shadow .25s;flex:none}
+.skills li:hover::before{background:var(--cyan);box-shadow:0 0 10px rgba(94,224,245,.8)}
+
+/* Contact */
+.mail{display:inline-block;font-family:var(--f-d);font-weight:700;font-size:clamp(1.45rem,5.2vw,2.7rem);letter-spacing:-.02em;color:var(--ink);text-decoration:none;overflow-wrap:anywhere;background:linear-gradient(var(--cyan),var(--cyan)) left bottom/0 2px no-repeat;padding-bottom:.15rem;transition:background-size .4s ease,color .3s}
+.mail:hover{background-size:100% 2px;color:var(--sky)}
+.contact p{max-width:34rem;margin:0 0 1.6rem}
+.contact .cta{margin-top:1.8rem;animation:none}
+.where{color:var(--mist);margin-top:1.6rem!important}
+#copymsg{min-height:1.5em;margin:.9rem 0 0!important;color:var(--sky);font-family:var(--f-d);font-size:.92rem}
+footer{border-top:1px solid var(--line);margin-top:5rem;padding:1.6rem clamp(1rem,4vw,2.5rem);display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;justify-content:space-between;color:var(--mist);font-family:var(--f-d);font-size:.9rem}
+footer a{color:var(--sky);text-decoration:none}
+footer a:hover{color:var(--cyan)}
+
+/* Small screens */
+@media (max-width:900px){
+  .hero{grid-template-columns:minmax(0,1fr);min-height:0;padding-top:1.5rem}
+}
+@media (max-width:560px){
+  .top nav{gap:.9rem}.top nav a{font-size:.85rem}
+  .wrap{padding-inline:38px 1rem}
+  .hud{font-size:.72rem;padding:.2rem .45rem;top:.5rem}.bar{width:40px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .ln>span{transform:none}
+  .js .reveal{opacity:1;transform:none}
+  .js .ill .draw{opacity:1;stroke-dashoffset:0}
+  .js .ill .fade{opacity:1}
+  .js .ill .ghost.fade{opacity:.45}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top" id="top">
+  <a class="brand" href="#hero" aria-label="Deston Cauthers, back to top">DC</a>
+  <nav aria-label="Primary">
+    <a href="#background">Background</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero" id="hero">
+    <div class="hero-copy">
+      <h1 class="name"><span class="ln"><span>Deston</span></span><span class="ln"><span>Cauthers</span></span></h1>
+      <p class="lede">I'm a Robotics Engineering and Electrical &amp; Computer Engineering double major at Worcester Polytechnic Institute. I build robots that sense, map, and move, from the code to the circuits.</p>
+      <div class="cta">
+        <a class="btn pri" href="#projects">See my projects</a>
+        <a class="btn sec" href="mailto:destoncauthers@gmail.com">Email me</a>
+      </div>
+    </div>
+
+    <figure class="scope" id="scope">
+      <div class="scope-frame grid brk">
+        <canvas id="map" aria-hidden="true"></canvas>
+        <div class="hud hud-l"><span>Mapped</span><b id="pct">0%</b><i class="bar"><u id="barfill"></u></i></div>
+        <div class="hud hud-r"><span class="pulse" id="pulse"></span><span id="status">Exploring</span></div>
+      </div>
+      <figcaption>
+        <span>Simulation: a robot exploring an unknown floor plan and mapping it as it goes, like my TurtleBot project below.</span>
+        <button class="linkbtn" id="replay" type="button">Replay</button>
+      </figcaption>
+    </figure>
+  </section>
+
+  <div class="page">
+    <div class="rail" aria-hidden="true"><i class="rail-fill"></i></div>
+
+    <!-- BACKGROUND -->
+    <section class="sec" id="background">
+      <span class="pad" aria-hidden="true"></span>
+      <div class="wrap">
+        <h2 class="reveal">Background</h2>
+        <div class="cols">
+          <div class="reveal">
+            <h3>Experience</h3>
+            <article class="entry">
+              <p class="when">2025–Present</p>
+              <h4>Student Assistant, Robotics Engineering Department</h4>
+              <p class="org">Worcester Polytechnic Institute</p>
+              <ul>
+                <li>Host weekly office hours to support students with course material and lab concepts</li>
+                <li>Facilitate lab sections, guiding students through hands-on robotics exercises</li>
+                <li>Collaborate with the professor to develop and refine classroom materials</li>
+              </ul>
+            </article>
+            <article class="entry">
+              <p class="when">2021–2026</p>
+              <h4>Outside Operations</h4>
+              <p class="org">Bass Rocks Golf Club</p>
+              <ul>
+                <li>Delivered customer service to club members, maintaining a professional and welcoming environment</li>
+                <li>Managed maintenance and upkeep of members' equipment and bag storage</li>
+                <li>Supported the preparation and execution of member tournaments</li>
+                <li>Ensured proper status on the course and range</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="reveal">
+            <h3>Education</h3>
+            <article class="entry">
+              <p class="when">Class of 2027</p>
+              <h4>Worcester Polytechnic Institute</h4>
+              <p class="org">Bachelor of Science, double major in Robotics Engineering and Electrical &amp; Computer Engineering</p>
+              <ul>
+                <li>3.85 GPA</li>
+                <li>Dean's List, 2023–2026</li>
+                <li>Charles O. Thompson Scholar, 2024</li>
+              </ul>
+            </article>
+            <article class="entry">
+              <p class="when">Class of 2023</p>
+              <h4>Gloucester High School</h4>
+              <p class="org">Gloucester, Massachusetts</p>
+              <ul>
+                <li>National Honor Society, 2021–2023</li>
+                <li>North Shore Chamber of Commerce Honors Scholar, 2023</li>
+                <li>Sawyer Medal, 2020</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="sec" id="projects">
+      <span class="pad" aria-hidden="true"></span>
+      <div class="wrap">
+        <h2 class="reveal">Projects</h2>
+        <p class="lead reveal">Six builds, from WPI robotics courses to high school tinkering.</p>
+
+        <div class="projects">
+
+          <article class="proj">
+            <div class="fig"><div class="frame grid brk">
+              <svg class="ill" viewBox="0 0 320 200" role="img" aria-label="Floor plan with a dashed route traced by a mapping robot">
+                <path class="l draw" pathLength="1" d="M28 28H292V172H28Z"/>
+                <path class="l draw" pathLength="1" style="--d:.15s" d="M28 100H110M140 100H292"/>
+                <path class="l draw" pathLength="1" style="--d:.3s" d="M170 28V60M170 80V100"/>
+                <path class="l draw" pathLength="1" style="--d:.45s" d="M200 100V130M200 150V172"/>
+                <path class="l a dash fade" style="--d:.9s" d="M52 140H125V66H244V46"/>
+                <path class="l a dash fade" style="--d:1.1s" d="M125 140H240V118"/>
+                <circle class="fade" style="--d:1.2s" cx="52" cy="140" r="7" fill="none" stroke="#8CC0FF" stroke-width="1.6"/>
+                <circle class="dot fade" style="--d:1.3s" cx="240" cy="118" r="4"/>
+                <path class="l a fade" style="--d:1.5s" d="M222 46A22 22 0 0 0 244 68M212 46A32 32 0 0 0 244 78"/>
+                <circle class="dot fade" style="--d:1.5s" cx="244" cy="46" r="6"/>
+              </svg>
+            </div></div>
+            <div class="txt reveal">
+              <h3>Mapping and Pathfinding Robot</h3>
+              <p class="ctx">RBE 3002 at WPI</p>
+              <p>We programmed a TurtleBot with ROS2 Jazzy, a Linux-based framework built for programming robots. Placed in an unknown environment, the robot explores until it has a complete map, then paths back to its starting position. It saves the map, and after a power-off it can localize itself from anywhere inside that map.</p>
+              <ul class="tags"><li>ROS2 Jazzy</li><li>TurtleBot</li><li>Autonomous mapping</li><li>Localization</li></ul>
+              <a class="lnk" href="https://youtu.be/PVm5FL2KcoE?si=WJmVd_mQrkFgWBaO" target="_blank" rel="noopener noreferrer">Watch the demo<span class="sr"> (opens in a new tab)</span></a>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="fig"><div class="frame grid brk">
+              <svg class="ill" viewBox="0 0 320 200" role="img" aria-label="Dartboard viewed by three cameras whose sight lines meet at a dart">
+                <path class="l draw" pathLength="1" d="M88 100a72 72 0 1 0 144 0a72 72 0 1 0-144 0"/>
+                <path class="l draw" pathLength="1" style="--d:.15s" d="M100 100a60 60 0 1 0 120 0a60 60 0 1 0-120 0"/>
+                <path class="l draw" pathLength="1" style="--d:.3s" d="M130 100a30 30 0 1 0 60 0a30 30 0 1 0-60 0"/>
+                <path class="l draw" pathLength="1" style="--d:.45s" d="M160 28V172M182.2 31.5L137.8 168.5M202.3 41.8L117.7 158.2M218.3 57.7L101.7 142.3M228.5 77.8L91.5 122.2M232 100H88M228.5 122.2L91.5 77.8M218.3 142.3L101.7 57.7M202.3 158.2L117.7 41.8M182.2 168.5L137.8 31.5"/>
+                <circle class="bull fade" style="--d:.8s" cx="160" cy="100" r="8"/>
+                <path class="l a dash fade" style="--d:1s" d="M160 10L188 78M239 146L188 78M81 146L188 78"/>
+                <circle class="dot fade" style="--d:1.2s" cx="160" cy="10" r="6"/>
+                <circle class="dot fade" style="--d:1.3s" cx="239" cy="146" r="6"/>
+                <circle class="dot fade" style="--d:1.4s" cx="81" cy="146" r="6"/>
+                <path class="l a fade" style="--d:1.6s" d="M183 73L193 83M193 73L183 83"/>
+              </svg>
+            </div></div>
+            <div class="txt reveal">
+              <h3>Dartzilla</h3>
+              <p class="ctx">WPI class project with two teammates</p>
+              <p>The assignment was to engineer something around a hobby, so we built a dartboard that senses where darts land. Three cameras spaced evenly around the board see each dart from different angles, which lets the system triangulate its position and convert it to a score using the board's scoring grid. A Raspberry Pi hosts a web page with live scores, so the game shows up on a laptop on the far side of the room, safe from the darts.</p>
+              <ul class="tags"><li>Multi-camera triangulation</li><li>Raspberry Pi</li><li>Web interface</li></ul>
+              <a class="lnk" href="https://youtu.be/eePHPWWQM24?si=Qa8ZI-Dp2-fzI_ss" target="_blank" rel="noopener noreferrer">Watch the demo<span class="sr"> (opens in a new tab)</span></a>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="fig"><div class="frame grid brk">
+              <svg class="ill" viewBox="0 0 320 200" role="img" aria-label="Island map with four restoration sites linked to a story page">
+                <path class="l draw fillb" pathLength="1" d="M120 132C100 118 96 92 116 76C130 60 156 58 172 68C196 62 222 78 218 104C226 128 196 150 168 148C150 156 132 148 120 132Z"/>
+                <path class="l draw fillb" pathLength="1" style="--d:.2s" d="M64 124C56 116 60 102 72 100C84 100 88 112 82 122C78 130 68 130 64 124Z"/>
+                <path class="l draw fillb" pathLength="1" style="--d:.3s" d="M244 40C250 34 262 36 262 44C262 52 250 54 244 48Z"/>
+                <path class="l draw" pathLength="1" style="--d:.5s" d="M130 112C146 100 164 104 184 92M136 128C152 120 170 126 196 116"/>
+                <path class="l a dash fade" style="--d:1s" d="M138 98L188 88L164 112L150 132"/>
+                <path class="l a dash fade" style="--d:1.2s" d="M188 88L234 130"/>
+                <circle class="dot fade" style="--d:1.2s" cx="138" cy="98" r="4.5"/>
+                <circle class="dot fade" style="--d:1.3s" cx="188" cy="88" r="4.5"/>
+                <circle class="dot fade" style="--d:1.4s" cx="164" cy="112" r="4.5"/>
+                <circle class="dot fade" style="--d:1.5s" cx="150" cy="132" r="4.5"/>
+                <path class="l fade" style="--d:1.6s" d="M234 130h56v42h-56ZM242 138h40v18h-40ZM242 164h28"/>
+              </svg>
+            </div></div>
+            <div class="txt reveal">
+              <h3>Hawaii Interactive Qualifying Project</h3>
+              <p class="ctx">WPI research project, half a semester in Hawaii</p>
+              <p>I worked with three other WPI students and a local nonprofit, Malama Learning Center, to create ArcGIS StoryMaps for their four biggest ecological restoration sites. Each one organizes a site's history, restoration goals, ecological context, and community involvement into something clear and accessible, built to support the nonprofit's education and outreach. We then published a research paper on what we learned and how we did it.</p>
+              <ul class="tags"><li>ArcGIS StoryMaps</li><li>Research paper</li><li>Team of four</li></ul>
+              <a class="lnk" href="https://wpi.meritpages.com/stories/Deston-Cauthers-Completes-Intensive-Research-Project/177609375" target="_blank" rel="noopener noreferrer">Read the WPI story<span class="sr"> (opens in a new tab)</span></a>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="fig"><div class="frame grid brk">
+              <svg class="ill" viewBox="0 0 320 200" role="img" aria-label="Four-joint robotic arm placing colored balls into a bin">
+                <path class="l draw" pathLength="1" d="M40 170H290"/>
+                <path class="l draw" pathLength="1" style="--d:.15s" d="M118 170V158H162V170"/>
+                <path class="l draw" pathLength="1" style="--d:.3s" d="M140 158L112 112L170 76L214 98"/>
+                <path class="l draw" pathLength="1" style="--d:.5s" d="M246 132V170M290 132V170"/>
+                <circle class="dot fade" style="--d:.9s" cx="140" cy="158" r="5"/>
+                <circle class="dot fade" style="--d:1s" cx="112" cy="112" r="5"/>
+                <circle class="dot fade" style="--d:1.1s" cx="170" cy="76" r="5"/>
+                <path class="l a fade" style="--d:1.2s" d="M214 98l12-9M214 98l14 7"/>
+                <circle class="ball fade" style="--d:1.3s;fill:#3D7BFF" cx="190" cy="162" r="8"/>
+                <circle class="ball fade" style="--d:1.4s;fill:#8CC0FF" cx="216" cy="162" r="8"/>
+                <circle class="ball fade" style="--d:1.5s;fill:#5EE0F5" cx="268" cy="162" r="8"/>
+                <path class="l a dash fade" style="--d:1.6s" d="M226 100C246 92 262 104 268 124"/>
+              </svg>
+            </div></div>
+            <div class="txt reveal">
+              <h3>OpenX Manipulator Arm</h3>
+              <p class="ctx">WPI, junior year</p>
+              <p>My team programmed a 4-DOF robotic arm to detect, identify, and sort colored balls using MATLAB and image processing. We started with basic arm motion through the Dynamixel SDK on Ubuntu, then implemented forward and inverse kinematics, trajectory planning, and Jacobian-based velocity mapping for smooth, accurate movement. In the final lab we added camera mapping, filtering, and masking so the arm could find and sort objects across its workspace.</p>
+              <ul class="tags"><li>MATLAB</li><li>Dynamixel SDK</li><li>Inverse kinematics</li><li>Image processing</li></ul>
+              <a class="lnk" href="https://youtu.be/mwp51aPDiK0" target="_blank" rel="noopener noreferrer">Watch the demo<span class="sr"> (opens in a new tab)</span></a>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="fig"><div class="frame grid brk">
+              <svg class="ill" viewBox="0 0 320 200" role="img" aria-label="Game controller tilted like a steering wheel">
+                <g class="ghost fade" style="--d:.4s" transform="rotate(-14 160 120)">
+                  <path class="l dash" d="M96 88C84 88 70 110 66 142C64 158 78 162 88 150L108 128H212L232 150C242 162 256 158 254 142C250 110 236 88 224 88Z"/>
+                </g>
+                <path class="l draw" pathLength="1" d="M96 88C84 88 70 110 66 142C64 158 78 162 88 150L108 128H212L232 150C242 162 256 158 254 142C250 110 236 88 224 88Z"/>
+                <path class="l draw" pathLength="1" style="--d:.5s" d="M142 112V128M134 120H150"/>
+                <circle class="l fade" style="--d:.8s" cx="116" cy="106" r="10"/>
+                <circle class="l fade" style="--d:.9s" cx="182" cy="116" r="9"/>
+                <circle class="dot fade" style="--d:1s" cx="204" cy="96" r="3.5"/>
+                <circle class="dot fade" style="--d:1.05s" cx="204" cy="112" r="3.5"/>
+                <circle class="dot fade" style="--d:1.1s" cx="196" cy="104" r="3.5"/>
+                <circle class="dot fade" style="--d:1.15s" cx="212" cy="104" r="3.5"/>
+                <path class="l a fade" style="--d:1.3s" d="M118 64A56 56 0 0 1 202 64M126 58L117 65L127 70M194 58L203 65L193 70"/>
+              </svg>
+            </div></div>
+            <div class="txt reveal">
+              <h3>Gyroscope Xbox Controller</h3>
+              <p class="ctx">High school Electrical Engineering final project</p>
+              <p>Using an Arduino Leonardo, I built a controller that a computer recognizes as an Xbox controller. It has all the basics: joysticks, buttons, and triggers. I also added a gyroscopic mode that lets you steer like a wheel by tilting it, a feature the original controller lacked and one I thought would be both useful and fun.</p>
+              <ul class="tags"><li>Arduino Leonardo</li><li>Gyroscope</li><li>Controller emulation</li></ul>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="fig"><div class="frame grid brk">
+              <svg class="ill" viewBox="0 0 320 200" role="img" aria-label="Side view of a small car with a propeller on the back, driven by radio signals">
+                <path class="l draw" pathLength="1" d="M50 156H292"/>
+                <path class="l draw" pathLength="1" style="--d:.15s" d="M78 132H236"/>
+                <path class="l draw" pathLength="1" style="--d:.3s" d="M96 132L108 108H180L196 132"/>
+                <path class="l draw" pathLength="1" style="--d:.5s" d="M88 108h20v12H88Z"/>
+                <circle class="l fade" style="--d:.8s" cx="104" cy="142" r="14"/>
+                <circle class="l fade" style="--d:.9s" cx="214" cy="142" r="14"/>
+                <circle class="dot fade" style="--d:1s" cx="104" cy="142" r="3"/>
+                <circle class="dot fade" style="--d:1.05s" cx="214" cy="142" r="3"/>
+                <path class="l fade" style="--d:1.1s" d="M236 108h14v16h-14Z"/>
+                <path class="l a fade" style="--d:1.2s" d="M243 62C239 78 239 96 243 108C247 96 247 78 243 62Z"/>
+                <path class="l a dash fade" style="--d:1.4s" d="M260 74C268 88 268 104 260 118M270 68C282 88 282 108 270 126"/>
+                <circle class="dot fade" style="--d:1.5s" cx="36" cy="84" r="4"/>
+                <path class="l a fade" style="--d:1.6s" d="M36 68A16 16 0 0 1 52 84M36 56A28 28 0 0 1 64 84M36 44A40 40 0 0 1 76 84"/>
+              </svg>
+            </div></div>
+            <div class="txt reveal">
+              <h3>Fan-Powered RC Car</h3>
+              <p class="ctx">High school, senior year</p>
+              <p>A passion project. I built the car's frame from metal parts, created a rack-and-pinion steering system driven by a servo, and mounted a drone motor and propeller on the back. With a drone controller and receiver, I could drive it remotely over radio signals.</p>
+              <ul class="tags"><li>Rack-and-pinion steering</li><li>Servo</li><li>Drone motor</li><li>Radio control</li></ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="sec" id="skills">
+      <span class="pad" aria-hidden="true"></span>
+      <div class="wrap">
+        <h2 class="reveal">Skills</h2>
+        <div class="skills">
+          <div class="reveal">
+            <h3>Software and platforms</h3>
+            <ul><li>ROS2 Jazzy</li><li>SolidWorks</li><li>ArcGIS</li><li>Linux</li><li>GitHub</li></ul>
+          </div>
+          <div class="reveal">
+            <h3>Hardware and tools</h3>
+            <ul><li>Arduino</li><li>FPGA design</li><li>Oscilloscope</li><li>Soldering</li><li>CNC</li><li>3D printing</li></ul>
+          </div>
+          <div class="reveal">
+            <h3>Programming languages</h3>
+            <ul><li>C</li><li>C#</li><li>C++</li><li>Java</li><li>Python</li><li>MATLAB</li><li>HTML</li><li>Verilog</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="sec contact" id="contact">
+      <span class="pad" aria-hidden="true"></span>
+      <div class="wrap">
+        <h2 class="reveal">Get in touch</h2>
+        <div class="reveal">
+          <p>Have a question about one of these projects, or want to work together? Email is the best way to reach me.</p>
+          <a class="mail" id="mail" href="mailto:destoncauthers@gmail.com">destoncauthers@gmail.com</a>
+          <div class="cta">
+            <a class="btn pri" href="mailto:destoncauthers@gmail.com">Email me</a>
+            <button class="btn sec" id="copy" type="button">Copy email address</button>
+          </div>
+          <p id="copymsg" role="status" aria-live="polite"></p>
+          <p class="where">Based in Gloucester, Massachusetts, studying in Worcester.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <span>&copy; <span id="yr">2026</span> Deston Cauthers</span>
+  <a href="#hero">Back to top</a>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+
+  $('#yr').textContent = new Date().getFullYear();
+
+  /* ---------- Reveal on scroll ---------- */
+  var targets = $$('.reveal, .proj');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.16, rootMargin: '0px 0px -6% 0px' });
+    targets.forEach(function (t) { io.observe(t); });
+  } else {
+    targets.forEach(function (t) { t.classList.add('in'); });
+  }
+
+  /* ---------- Active nav link ---------- */
+  var navLinks = $$('.top nav a');
+  if ('IntersectionObserver' in window) {
+    var navIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          navLinks.forEach(function (l) {
+            l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    navLinks.forEach(function (l) {
+      var s = document.querySelector(l.getAttribute('href'));
+      if (s) navIO.observe(s);
+    });
+    var heroIO = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) navLinks.forEach(function (l) { l.classList.remove('on'); });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    heroIO.observe($('#hero'));
+  }
+
+  /* ---------- Scroll-linked: header, trace rail, parallax ---------- */
+  var header = $('.top'), page = $('.page'), fill = $('.rail-fill');
+  var pads = $$('.pad'), frames = $$('.frame'), heroCopy = $('.hero-copy');
+  var ticking = false;
+
+  function update() {
+    var y = window.pageYOffset || 0, vh = window.innerHeight || 800;
+    header.classList.toggle('solid', y > 24);
+
+    var r = page.getBoundingClientRect();
+    var p = Math.min(1, Math.max(0, (vh * 0.5 - r.top) / r.height));
+    fill.style.transform = 'scaleY(' + p.toFixed(4) + ')';
+    pads.forEach(function (pd) {
+      pd.classList.toggle('on', pd.getBoundingClientRect().top < vh * 0.5);
+    });
+
+    if (!reduce) {
+      frames.forEach(function (f) {
+        var b = f.parentNode.getBoundingClientRect();
+        var t = ((b.top + b.height / 2) - vh / 2) / vh;
+        t = Math.max(-1, Math.min(1, t));
+        f.style.setProperty('--py', (t * -16).toFixed(1) + 'px');
+      });
+      var hp = Math.min(1, y / (vh * 0.85));
+      heroCopy.style.transform = 'translateY(' + (y * 0.12).toFixed(1) + 'px)';
+      heroCopy.style.opacity = (1 - hp * 0.6).toFixed(2);
+    }
+  }
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () { ticking = false; update(); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+
+  /* ---------- Hero: simulated mapping robot ---------- */
+  (function mapper() {
+    var canvas = $('#map');
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var pctEl = $('#pct'), barEl = $('#barfill'), statusEl = $('#status'), pulseEl = $('#pulse');
+    var COLS = 40, ROWS = 25, RANGE = 11, NRAYS = 120, SPEED = 7, HOLD = 3.4;
+
+    /* Floor plan: rooms joined by doorways */
+    var grid = [];
+    for (var gy = 0; gy < ROWS; gy++) grid.push(new Uint8Array(COLS));
+    function rect(x0, y0, x1, y1) { for (var y = y0; y <= y1; y++) for (var x = x0; x <= x1; x++) grid[y][x] = 1; }
+    function hwall(y, doors) { rect(0, y, COLS - 1, y); doors.forEach(function (d) { for (var x = d[0]; x <= d[1]; x++) grid[y][x] = 0; }); }
+    function vwall(x, y0, y1, doors) { rect(x, y0, x, y1); doors.forEach(function (d) { for (var y = d[0]; y <= d[1]; y++) grid[y][x] = 0; }); }
+    rect(0, 0, COLS - 1, 0); rect(0, ROWS - 1, COLS - 1, ROWS - 1); rect(0, 0, 0, ROWS - 1); rect(COLS - 1, 0, COLS - 1, ROWS - 1);
+    hwall(8, [[6, 8], [20, 22], [33, 35]]);
+    hwall(16, [[12, 14], [27, 29]]);
+    vwall(13, 1, 7, [[3, 4]]); vwall(27, 1, 7, [[4, 5]]);
+    vwall(18, 9, 15, [[11, 12]]); vwall(31, 9, 15, [[12, 13]]);
+    vwall(10, 17, 23, [[19, 20]]); vwall(22, 17, 23, [[21, 22]]); vwall(32, 17, 23, [[18, 19]]);
+    rect(4, 3, 5, 4); rect(19, 2, 20, 3); rect(33, 3, 34, 4); rect(9, 10, 10, 11); rect(24, 10, 25, 11);
+    rect(4, 20, 5, 21); rect(15, 19, 16, 20); rect(26, 20, 27, 21); rect(35, 21, 36, 22);
+
+    function free(x, y) { return x >= 0 && y >= 0 && x < COLS && y < ROWS && grid[y][x] === 0; }
+    function snap(p) {
+      if (free(p[0], p[1])) return p;
+      for (var r = 1; r < 6; r++) for (var dy = -r; dy <= r; dy++) for (var dx = -r; dx <= r; dx++)
+        if (free(p[0] + dx, p[1] + dy)) return [p[0] + dx, p[1] + dy];
+      return p;
+    }
+    function bfs(a, b) {
+      var prev = new Int16Array(COLS * ROWS); for (var i = 0; i < prev.length; i++) prev[i] = -1;
+      var start = a[1] * COLS + a[0], goal = b[1] * COLS + b[0], q = [start], qi = 0;
+      prev[start] = start;
+      var dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+      while (qi < q.length) {
+        var c = q[qi++]; if (c === goal) break;
+        var cx = c % COLS, cy = (c / COLS) | 0;
+        for (var k = 0; k < 4; k++) {
+          var nx = cx + dirs[k][0], ny = cy + dirs[k][1], ni = ny * COLS + nx;
+          if (free(nx, ny) && prev[ni] < 0) { prev[ni] = c; q.push(ni); }
+        }
+      }
+      if (prev[goal] < 0) return [a, b];
+      var path = [], cur = goal;
+      while (cur !== prev[cur]) { path.push([cur % COLS, (cur / COLS) | 0]); cur = prev[cur]; }
+      path.push(a); path.reverse();
+      return path;
+    }
+    function chaikin(p, n) {
+      for (var k = 0; k < n; k++) {
+        var out = [p[0]];
+        for (var i = 0; i < p.length - 1; i++) {
+          var a = p[i], b = p[i + 1];
+          out.push([a[0] * 0.75 + b[0] * 0.25, a[1] * 0.75 + b[1] * 0.25], [a[0] * 0.25 + b[0] * 0.75, a[1] * 0.25 + b[1] * 0.75]);
+        }
+        out.push(p[p.length - 1]); p = out;
+      }
+      return p;
+    }
+    function lens(p) {
+      var c = [0];
+      for (var i = 1; i < p.length; i++) c.push(c[i - 1] + Math.hypot(p[i][0] - p[i - 1][0], p[i][1] - p[i - 1][1]));
+      return c;
+    }
+
+    /* Route: explore every room, then return to the start */
+    var WP = [[3, 12], [8, 13], [24, 13], [35, 12], [34, 5], [21, 5], [7, 5], [7, 12], [14, 21], [6, 19], [14, 21], [26, 22], [30, 19], [35, 19], [3, 12]].map(snap);
+    var raw = [], exploreIdx = 0;
+    for (var i = 1; i < WP.length; i++) {
+      var seg = bfs(WP[i - 1], WP[i]);
+      for (var j = 0; j < seg.length; j++) if (i === 1 || j > 0) raw.push([seg[j][0] + 0.5, seg[j][1] + 0.5]);
+      if (i === WP.length - 2) exploreIdx = raw.length;
+    }
+    var cumRaw = lens(raw);
+    var frac = cumRaw[Math.max(0, exploreIdx - 1)] / cumRaw[cumRaw.length - 1];
+    var pts = chaikin(raw, 2), cum = lens(pts), total = cum[cum.length - 1], returnAt = frac * total;
+
+    /* Cells that can be revealed: open floor plus walls touching open floor */
+    var revealTotal = 0;
+    for (var yy = 0; yy < ROWS; yy++) for (var xx = 0; xx < COLS; xx++) {
+      if (grid[yy][xx] === 0) { revealTotal++; continue; }
+      var near = false;
+      for (var oy = -1; oy <= 1; oy++) for (var ox = -1; ox <= 1; ox++) if (free(xx + ox, yy + oy)) near = true;
+      if (near) revealTotal++;
+    }
+
+    var known, glow, knownCount, dist, si, px, py, heading, state, holdT, lastPct;
+    var rx = new Float32Array(NRAYS), ry = new Float32Array(NRAYS);
+
+    function reset() {
+      known = new Uint8Array(COLS * ROWS); glow = new Float32Array(COLS * ROWS);
+      knownCount = 0; dist = 0; si = 0; state = 0; holdT = 0; lastPct = -1;
+      px = pts[0][0]; py = pts[0][1];
+      heading = Math.atan2(pts[1][1] - pts[0][1], pts[1][0] - pts[0][0]);
+      for (var k = 0; k < NRAYS; k++) { rx[k] = px; ry[k] = py; }
+      scan(px, py);
+      hud();
+    }
+    function mark(idx, v) { if (!known[idx]) { known[idx] = v; knownCount++; } glow[idx] = 1; }
+    function scan(x, y) {
+      for (var k = 0; k < NRAYS; k++) {
+        var a = k / NRAYS * Math.PI * 2, dx = Math.cos(a), dy = Math.sin(a), d = 0, cx = x, cy = y;
+        while (d < RANGE) {
+          d += 0.2; cx = x + dx * d; cy = y + dy * d;
+          var ix = cx | 0, iy = cy | 0;
+          if (cx < 0 || cy < 0 || ix >= COLS || iy >= ROWS) break;
+          if (grid[iy][ix] === 1) { mark(iy * COLS + ix, 2); break; }
+          mark(iy * COLS + ix, 1);
+        }
+        rx[k] = cx; ry[k] = cy;
+      }
+    }
+    function advance(dt) {
+      dist = Math.min(total, dist + SPEED * dt);
+      while (si < cum.length - 2 && cum[si + 1] < dist) si++;
+      var a = pts[si], b = pts[si + 1], sl = (cum[si + 1] - cum[si]) || 1;
+      var t = Math.max(0, Math.min(1, (dist - cum[si]) / sl));
+      px = a[0] + (b[0] - a[0]) * t; py = a[1] + (b[1] - a[1]) * t;
+      var target = Math.atan2(b[1] - a[1], b[0] - a[0]);
+      var diff = Math.atan2(Math.sin(target - heading), Math.cos(target - heading));
+      heading += diff * Math.min(1, dt * 8);
+      scan(px, py);
+    }
+    function hud() {
+      var p = Math.min(100, Math.round(knownCount / revealTotal * 100));
+      if (p !== lastPct) {
+        lastPct = p; pctEl.textContent = p + '%'; barEl.style.transform = 'scaleX(' + (p / 100) + ')';
+      }
+      var s = state === 0 ? 'Exploring' : state === 1 ? 'Returning to start' : 'Map saved';
+      if (statusEl.textContent !== s) statusEl.textContent = s;
+      pulseEl.classList.toggle('done', state >= 2);
+    }
+    function tick(dt) {
+      if (state < 2) {
+        advance(dt);
+        if (dist >= total) { state = 2; holdT = 0; } else state = dist >= returnAt ? 1 : 0;
+      } else {
+        holdT += dt;
+        if (state === 2 && holdT > HOLD) { state = 3; canvas.style.opacity = '0'; }
+        else if (state === 3 && holdT > HOLD + 0.9) { reset(); canvas.style.opacity = '1'; }
+      }
+      var decay = Math.pow(0.08, dt);
+      for (var i = 0; i < glow.length; i++) if (glow[i] > 0.001) glow[i] *= decay;
+      hud();
+    }
+
+    function draw(ts) {
+      var W = canvas.width, H = canvas.height; if (!W) return;
+      var cs = W / COLS, lw = Math.max(1, cs * 0.09), i, x, y, v, g;
+      ctx.clearRect(0, 0, W, H);
+      for (i = 0; i < known.length; i++) {
+        v = known[i]; if (!v) continue;
+        x = i % COLS; y = (i / COLS) | 0; g = glow[i];
+        ctx.fillStyle = v === 1 ? 'rgba(61,123,255,' + (0.16 + 0.32 * g).toFixed(3) + ')' : 'rgba(94,224,245,' + (0.6 + 0.4 * g).toFixed(3) + ')';
+        ctx.fillRect(x * cs + 0.5, y * cs + 0.5, cs - 1, cs - 1);
+      }
+      var X = px * cs, Y = py * cs;
+      if (state < 2) {
+        ctx.beginPath(); ctx.moveTo(X, Y);
+        for (i = 0; i < NRAYS; i++) ctx.lineTo(rx[i] * cs, ry[i] * cs);
+        ctx.closePath(); ctx.fillStyle = 'rgba(140,192,255,0.09)'; ctx.fill();
+        var sw = Math.floor(((ts || 0) / 1000 * 2.4 % (Math.PI * 2)) / (Math.PI * 2) * NRAYS);
+        for (i = 0; i < 9; i++) {
+          var k = (sw - i + NRAYS) % NRAYS;
+          ctx.strokeStyle = 'rgba(94,224,245,' + (0.75 - i * 0.08).toFixed(2) + ')'; ctx.lineWidth = lw;
+          ctx.beginPath(); ctx.moveTo(X, Y); ctx.lineTo(rx[k] * cs, ry[k] * cs); ctx.stroke();
+        }
+      }
+      ctx.strokeStyle = 'rgba(140,192,255,0.4)'; ctx.lineWidth = lw; ctx.beginPath(); ctx.moveTo(pts[0][0] * cs, pts[0][1] * cs);
+      for (i = 1; i <= si; i++) ctx.lineTo(pts[i][0] * cs, pts[i][1] * cs);
+      ctx.lineTo(X, Y); ctx.stroke();
+      ctx.strokeStyle = '#8CC0FF'; ctx.lineWidth = lw * 1.4; ctx.beginPath(); ctx.arc(pts[0][0] * cs, pts[0][1] * cs, cs * 0.75, 0, 6.2832); ctx.stroke();
+      var gl = ctx.createRadialGradient(X, Y, 0, X, Y, cs * 2.3);
+      gl.addColorStop(0, 'rgba(94,224,245,0.55)'); gl.addColorStop(1, 'rgba(94,224,245,0)');
+      ctx.fillStyle = gl; ctx.beginPath(); ctx.arc(X, Y, cs * 2.3, 0, 6.2832); ctx.fill();
+      ctx.save(); ctx.translate(X, Y); ctx.rotate(heading);
+      ctx.fillStyle = '#E4EDFF'; ctx.beginPath(); ctx.arc(0, 0, cs * 0.44, 0, 6.2832); ctx.fill();
+      ctx.fillStyle = '#3D7BFF'; ctx.beginPath(); ctx.moveTo(cs * 0.66, 0); ctx.lineTo(cs * 0.16, -cs * 0.26); ctx.lineTo(cs * 0.16, cs * 0.26); ctx.closePath(); ctx.fill();
+      ctx.restore();
+    }
+
+    function size() {
+      var r = canvas.getBoundingClientRect(); if (!r.width) return;
+      var dpr = Math.min(2, window.devicePixelRatio || 1);
+      canvas.width = Math.round(r.width * dpr);
+      canvas.height = Math.round(r.width * dpr * ROWS / COLS);
+      draw(performance.now());
+    }
+
+    var raf = 0, last = 0, visible = true;
+    function frame(ts) {
+      raf = 0; if (!visible) return;
+      var dt = Math.max(0, Math.min(0.05, (ts - last) / 1000)); last = ts;
+      tick(dt); draw(ts);
+      raf = window.requestAnimationFrame(frame);
+    }
+    function start() { if (!raf && !reduce) { last = performance.now(); raf = window.requestAnimationFrame(frame); } }
+
+    function finishInstantly() {
+      reset();
+      while (state < 2) { tick(0.1); }
+      for (var i = 0; i < glow.length; i++) glow[i] = 0;
+      hud(); draw(0);
+    }
+
+    reset();
+    if ('ResizeObserver' in window) new ResizeObserver(size).observe(canvas); else window.addEventListener('resize', size);
+    size();
+
+    if (reduce) {
+      finishInstantly();
+      $('#replay').style.display = 'none';
+    } else {
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) start(); }, { threshold: 0.05 }).observe($('#scope'));
+      }
+      start();
+      $('#replay').addEventListener('click', function () { canvas.style.opacity = '1'; reset(); visible = true; start(); });
+    }
+  })();
+
+  /* ---------- Copy email ---------- */
+  var copyBtn = $('#copy'), copyMsg = $('#copymsg'), EMAIL = 'destoncauthers@gmail.com';
+  function done(ok) { copyMsg.textContent = ok ? 'Email address copied.' : 'Copy failed. Select the address above and copy it manually.'; }
+  function fallbackCopy() {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = EMAIL; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      var ok = document.execCommand('copy'); document.body.removeChild(ta); done(ok);
+    } catch (e) { done(false); }
+  }
+  copyBtn.addEventListener('click', function () {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(EMAIL).then(function () { done(true); }, fallbackCopy);
+    } else { fallbackCopy(); }
+  });
+})();
+</script>
+</body>
+</html>
