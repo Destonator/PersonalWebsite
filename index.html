@@ -143,6 +143,8 @@ h3,h4{font-family:var(--f-d);color:var(--ink);margin:0}
 .ctx{font:400 .95rem var(--f-d);color:var(--mist);margin:.35rem 0 1rem}
 .txt p{margin:0 0 1rem}
 .txt p.ctx{margin:.35rem 0 1rem}
+.txt p.now{display:inline-flex;align-items:center;gap:.55rem;margin:0 0 .9rem;font:600 .82rem var(--f-d);color:var(--cyan);border:1px solid var(--line);padding:.22rem .65rem;border-radius:3px}
+.txt p.now .pulse{flex:none}
 .tags{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem .5rem;padding:0;margin:1.1rem 0 1.2rem}
 .tags li{font:400 .82rem var(--f-d);color:var(--sky);border:1px solid var(--line);padding:.18rem .6rem;border-radius:3px}
 .lnk{color:var(--sky);font-family:var(--f-d);font-weight:600;text-decoration:none;border-bottom:1px solid var(--cobalt);padding-bottom:1px;transition:color .2s,border-color .2s}
@@ -205,7 +207,7 @@ footer a:hover{color:var(--cyan)}
   <section class="hero" id="hero">
     <div class="hero-copy">
       <h1 class="name"><span class="ln"><span>Deston</span></span><span class="ln"><span>Cauthers</span></span></h1>
-      <p class="lede">I'm a Robotics Engineering and Electrical &amp; Computer Engineering double major at Worcester Polytechnic Institute. </p>
+      <p class="lede">I'm a Robotics Engineering and Electrical &amp; Computer Engineering double major at Worcester Polytechnic Institute. I build robots that sense, map, and move, from the code to the circuits.</p>
       <div class="cta">
         <a class="btn pri" href="#projects">See my projects</a>
         <a class="btn sec" href="mailto:destoncauthers@gmail.com">Email me</a>
@@ -291,9 +293,37 @@ footer a:hover{color:var(--cyan)}
       <span class="pad" aria-hidden="true"></span>
       <div class="wrap">
         <h2 class="reveal">Projects</h2>
-        <p class="lead reveal">Six builds, from WPI robotics courses to high school tinkering.</p>
+        <p class="lead reveal">Seven builds, starting with the project I'm working on now and going back to high school tinkering.</p>
 
         <div class="projects">
+
+          <article class="proj">
+            <div class="fig"><div class="frame grid brk">
+              <svg class="ill" viewBox="0 0 320 200" role="img" aria-label="Sailboat with a tall wingsail heading toward a buoy that a camera has boxed as detected, with wind arrows pointing at the bow">
+                <path class="l draw" pathLength="1" d="M20 158H92M214 158H300"/>
+                <path class="l draw" pathLength="1" style="--d:.15s" d="M92 148H214C210 160 204 168 190 168H110C98 168 93 158 92 148Z"/>
+                <path class="l draw fillb" pathLength="1" style="--d:.3s" d="M124 148C114 112 116 66 132 30C148 66 150 112 140 148Z"/>
+                <path class="l draw" pathLength="1" style="--d:.5s" d="M128 100H84"/>
+                <path class="l a fade" style="--d:.9s" d="M84 84C77 92 77 108 84 116C91 108 91 92 84 84Z"/>
+                <path class="l fade" style="--d:.7s" d="M30 178q8-6 16 0t16 0t16 0M226 178q8-6 16 0t16 0"/>
+                <path class="l draw" pathLength="1" style="--d:.6s" d="M248 158L256 128L264 158Z"/>
+                <circle class="dot fade" style="--d:1.2s" cx="256" cy="122" r="4"/>
+                <path class="l fade" style="--d:1s" d="M203 138h11v10h-11Z"/>
+                <path class="l a dash fade" style="--d:1.2s" d="M214 141L238 120M214 145L238 160"/>
+                <path class="l a dash fade" style="--d:1.4s" d="M238 112h36v52h-36Z"/>
+                <path class="l a dash fade" style="--d:1.6s" d="M290 40H240M290 58H256"/>
+                <path class="l a fade" style="--d:1.6s" d="M248 32L238 40L248 48"/>
+              </svg>
+            </div></div>
+            <div class="txt reveal">
+              <p class="now"><span class="pulse" aria-hidden="true"></span>Current project</p>
+              <h3>Sailbot</h3>
+              <p class="ctx">Major Qualifying Project (MQP) at WPI, with two teammates</p>
+              <p>WPI's autonomous sailboat, the Wild Goats, competes in the International Robotic Sailing Regatta (SailBot), and our team's goal is to earn more points than last year's boat. It sails with a rigid wingsail on a freely rotating mast, with a trim tab that adjusts the sail to the wind.</p>
+              <p>We're upgrading three systems: navigation software that can tack and hold a steady heading, a computer vision model retrained to find buoys more reliably, and a compact circuit board (PCB) that regulates and monitors the sail's battery. Our targets are reaching any given point 90% of the time and identifying buoys with 80% accuracy.</p>
+              <ul class="tags"><li>Autonomous navigation</li><li>Computer vision</li><li>YOLO</li><li>PCB design</li><li>Team of three</li></ul>
+            </div>
+          </article>
 
           <article class="proj">
             <div class="fig"><div class="frame grid brk">
