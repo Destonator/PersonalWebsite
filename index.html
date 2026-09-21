@@ -133,6 +133,7 @@ h3,h4{font-family:var(--f-d);color:var(--ink);margin:0}
 .ill .fillb{fill:rgba(61,123,255,.14)}
 .ill .bull{fill:var(--panel);stroke:var(--sky);stroke-width:1.6}
 .ill .ball{stroke:none}
+.ill .num{font:700 15px var(--f-d);fill:var(--sky);text-anchor:middle}
 .ill .ghost{opacity:.45}
 .js .ill .draw{opacity:0;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.5s ease var(--d,0s),opacity .01s linear var(--d,0s)}
 .js .in .ill .draw{opacity:1;stroke-dashoffset:0}
@@ -207,7 +208,7 @@ footer a:hover{color:var(--cyan)}
   <section class="hero" id="hero">
     <div class="hero-copy">
       <h1 class="name"><span class="ln"><span>Deston</span></span><span class="ln"><span>Cauthers</span></span></h1>
-      <p class="lede">I'm a Robotics Engineering and Electrical &amp; Computer Engineering double major at Worcester Polytechnic Institute. I build robots that sense, map, and move, from the code to the circuits.</p>
+      <p class="lede">I'm a Robotics Engineering and Electrical &amp; Computer Engineering double major at Worcester Polytechnic Institute. </p>
       <div class="cta">
         <a class="btn pri" href="#projects">See my projects</a>
         <a class="btn sec" href="mailto:destoncauthers@gmail.com">Email me</a>
@@ -268,7 +269,7 @@ footer a:hover{color:var(--cyan)}
               <h4>Worcester Polytechnic Institute</h4>
               <p class="org">Bachelor of Science, double major in Robotics Engineering and Electrical &amp; Computer Engineering</p>
               <ul>
-                <li>3.85 GPA</li>
+                <li>3.86 GPA</li>
                 <li>Dean's List, 2023–2026</li>
                 <li>Charles O. Thompson Scholar, 2024</li>
               </ul>
@@ -293,7 +294,7 @@ footer a:hover{color:var(--cyan)}
       <span class="pad" aria-hidden="true"></span>
       <div class="wrap">
         <h2 class="reveal">Projects</h2>
-        <p class="lead reveal">Seven builds, starting with the project I'm working on now and going back to high school tinkering.</p>
+        <p class="lead reveal">Eight builds, starting with the project I'm working on now and going back to high school tinkering.</p>
 
         <div class="projects">
 
@@ -322,6 +323,36 @@ footer a:hover{color:var(--cyan)}
               <p>WPI's autonomous sailboat, the Wild Goats, competes in the International Robotic Sailing Regatta (SailBot), and our team's goal is to earn more points than last year's boat. It sails with a rigid wingsail on a freely rotating mast, with a trim tab that adjusts the sail to the wind.</p>
               <p>We're upgrading three systems: navigation software that can tack and hold a steady heading, a computer vision model retrained to find buoys more reliably, and a compact circuit board (PCB) that regulates and monitors the sail's battery. Our targets are reaching any given point 90% of the time and identifying buoys with 80% accuracy.</p>
               <ul class="tags"><li>Autonomous navigation</li><li>Computer vision</li><li>YOLO</li><li>PCB design</li><li>Team of three</li></ul>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="fig"><div class="frame grid brk">
+              <svg class="ill" viewBox="0 0 320 200" role="img" aria-label="Minesweeper board with numbered tiles and a flag, inside a dashed screenshot area, with a click marker on the next safe tile">
+                <path class="l draw" pathLength="1" d="M45 25H255V175H45Z"/>
+                <path class="l draw" pathLength="1" style="--d:.15s" d="M75 25V175M105 25V175M135 25V175M165 25V175M195 25V175M225 25V175M45 55H255M45 85H255M45 115H255M45 145H255"/>
+                <path class="fillb fade" style="--d:.7s" d="M45 25H135V55H105V85H75V115H45Z"/>
+                <text class="num fade" style="--d:.9s" x="150" y="45">1</text>
+                <text class="num fade" style="--d:1s" x="120" y="75">1</text>
+                <text class="num fade" style="--d:1.05s" x="150" y="75">2</text>
+                <text class="num fade" style="--d:1.1s" x="90" y="105">1</text>
+                <text class="num fade" style="--d:1.15s" x="120" y="105">2</text>
+                <text class="num fade" style="--d:1.2s" x="60" y="135">1</text>
+                <text class="num fade" style="--d:1.25s" x="90" y="135">2</text>
+                <path class="l a fade" style="--d:1.4s" d="M147 108V90M147 90L160 95L147 100"/>
+                <path class="l a dash fade" style="--d:1.5s" d="M37 17H263V183H37Z"/>
+                <circle class="l a dash fade" style="--d:1.7s" cx="120" cy="130" r="12"/>
+                <path class="l a fade" style="--d:1.8s" d="M120 130V150L125.5 145L130 155L134 153L129.5 143.5H137Z"/>
+              </svg>
+            </div></div>
+            <div class="txt reveal">
+              <p class="now"><span class="pulse done" aria-hidden="true"></span>Passion project</p>
+              <h3>Minesweeper Bot</h3>
+              <p class="ctx">Built for fun</p>
+              <p>A bot that plays Google Minesweeper on its own. It takes a screenshot of the playing area and samples the color at the center of each tile, which tells it the number that tile holds.</p>
+              <p>The bot stores the board, runs a series of algorithms to work out which tiles are safe and which hide mines, then clicks the safe ones and repeats until the game is won. It comes as a Mac app, and the core bot.py script should run on any operating system from the terminal.</p>
+              <ul class="tags"><li>Python</li><li>Screen capture</li><li>Color sampling</li><li>Game-solving algorithms</li><li>Mac app</li></ul>
+              <a class="lnk" href="https://github.com/Destonator/MinesweeperBot" target="_blank" rel="noopener noreferrer">View on GitHub<span class="sr"> (opens in a new tab)</span></a>
             </div>
           </article>
 
